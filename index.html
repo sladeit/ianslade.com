@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="description" content="Ian Slade is a clinician turned healthcare technologist who puts technology in caring hands for the well-being of all.">
+  <title>Ian Slade</title>
+  <style>
+    :root {
+      --bg: #f6f1e8;
+      --bg-elev: #fffdf8;
+      --ink: #1c1916;
+      --muted: #5c564e;
+      --line: #d7d0c4;
+      --link: #1c1916;
+      --link-hover: #0b3d36;
+      --accent: #0b3d36;
+      --video-bg: #2a2622;
+      --video-ink: #f6f1e8;
+      --focus: #0b3d36;
+      --hero-ink: #f6f1e8;
+      --hero-muted: rgba(246, 241, 232, 0.88);
+      --radius: 10px;
+      --measure: 40rem;
+      --wrap: 68rem;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #161412;
+        --bg-elev: #1f1c19;
+        --ink: #f3eee6;
+        --muted: #b7b0a4;
+        --line: #3a3530;
+        --link: #f3eee6;
+        --link-hover: #c5ddd6;
+        --accent: #9ec9be;
+        --video-bg: #0e0c0b;
+        --video-ink: #f3eee6;
+        --focus: #9ec9be;
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, "Times New Roman", serif;
+      font-size: 1.125rem;
+      line-height: 1.6;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .skip {
+      position: absolute;
+      left: 0.75rem;
+      top: -3rem;
+      background: var(--bg-elev);
+      color: var(--ink);
+      padding: 0.5rem 0.75rem;
+      z-index: 20;
+    }
+    .skip:focus { top: 0.75rem; }
+
+    a {
+      color: var(--link);
+      text-underline-offset: 0.18em;
+    }
+    a:hover { color: var(--link-hover); }
+    a:focus-visible,
+    .skip:focus-visible {
+      outline: 2px solid var(--focus);
+      outline-offset: 3px;
+    }
+
+    .hero {
+      position: relative;
+      isolation: isolate;
+      color: var(--hero-ink);
+      min-height: 32rem;
+      display: grid;
+      align-items: end;
+    }
+    .hero-media,
+    .hero-media picture,
+    .hero-media img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+    .hero-media { z-index: 0; }
+    .hero-media img {
+      display: block;
+      object-fit: cover;
+      object-position: 44% 28%;
+      background: #2a2622;
+    }
+    .hero-scrim {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background:
+        linear-gradient(to top, rgba(16, 13, 11, 0.9) 0%, rgba(16, 13, 11, 0.55) 36%, rgba(16, 13, 11, 0.16) 58%, transparent 74%);
+    }
+    .hero-copy {
+      position: relative;
+      z-index: 2;
+      width: min(var(--wrap), calc(100% - 2rem));
+      margin: 0 auto;
+      padding: 2rem 0 1.75rem;
+    }
+    .hero h1 {
+      margin: 0 0 0.65rem;
+      font-size: clamp(2.4rem, 8vw, 3.75rem);
+      font-weight: 500;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      text-shadow: 0 1px 18px rgba(0, 0, 0, 0.45);
+    }
+    .hero .lede {
+      margin: 0;
+      font-size: clamp(1.15rem, 3.4vw, 1.4rem);
+      line-height: 1.4;
+      max-width: 26rem;
+      color: var(--hero-muted);
+      text-shadow: 0 1px 14px rgba(0, 0, 0, 0.5);
+    }
+
+    .wrap {
+      width: min(var(--wrap), calc(100% - 2rem));
+      margin: 0 auto;
+      padding: 2rem 0 4rem;
+    }
+
+    .video-ph {
+      margin: 0 0 0.5rem;
+      max-width: var(--measure);
+      background: var(--video-bg);
+      color: var(--video-ink);
+      border-radius: var(--radius);
+      aspect-ratio: 16 / 9;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 1.25rem;
+      border: 1px solid var(--line);
+    }
+    .video-ph .play {
+      width: 3.25rem;
+      height: 3.25rem;
+      border: 2px solid currentColor;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      margin: 0 auto 0.75rem;
+    }
+    .video-ph .play span {
+      display: block;
+      width: 0;
+      height: 0;
+      border-top: 0.45rem solid transparent;
+      border-bottom: 0.45rem solid transparent;
+      border-left: 0.75rem solid currentColor;
+      margin-left: 0.15rem;
+    }
+    .video-ph p {
+      margin: 0;
+      font-size: 0.95rem;
+      letter-spacing: 0.01em;
+    }
+    .video-ph .hint {
+      margin-top: 0.25rem;
+      color: color-mix(in srgb, var(--video-ink) 72%, transparent);
+      font-size: 0.85rem;
+    }
+
+    main {
+      max-width: var(--measure);
+      padding-top: 0.5rem;
+    }
+
+    section {
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--line);
+    }
+    section h2 {
+      margin: 0 0 0.35rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+    section h3 {
+      margin: 0 0 0.75rem;
+      font-size: 1.6rem;
+      font-weight: 500;
+      letter-spacing: -0.015em;
+      line-height: 1.2;
+    }
+    section p { margin: 0 0 1rem; }
+    .cta {
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 0.95rem;
+    }
+
+
+    .story { display: grid; gap: 1.25rem; align-items: start; }
+    .story .portrait {
+      width: 7.5rem; height: 7.5rem; border-radius: 50%; object-fit: cover;
+      border: 1px solid var(--line); display: block;
+    }
+    .story blockquote {
+      margin: 0.25rem 0 0; padding-left: 1rem; border-left: 3px solid var(--accent);
+      font-size: 1.3rem; line-height: 1.35; font-style: italic;
+    }
+    .story blockquote footer { all: unset; display: block; margin-top: 0.35rem; font-style: normal; font-size: 0.9rem; color: var(--muted); font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+    figure.photo { margin: 0 0 1rem; }
+    figure.photo img { width: 100%; height: auto; display: block; border-radius: var(--radius); }
+    .cta a + a { margin-left: 1.25rem; }
+    @media (min-width: 640px) {
+      .story { grid-template-columns: 7.5rem 1fr; gap: 1.75rem; }
+    }
+
+    .nw { white-space: nowrap; }
+    .contact p { margin: 0 0 0.75rem; }
+    .contact a.mail { font-size: 1.2rem; }
+
+    footer {
+      padding: 1.75rem 0 0;
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: baseline;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 0.85rem;
+    }
+    footer a { color: var(--muted); }
+
+    @media (min-width: 800px) {
+      .hero {
+        min-height: 0;
+        aspect-ratio: 16 / 9;
+        max-height: 46rem;
+        align-items: end;
+      }
+      .hero-scrim {
+        background:
+          linear-gradient(to top, rgba(16, 13, 11, 0.88) 0%, rgba(16, 13, 11, 0.48) 28%, rgba(16, 13, 11, 0.12) 50%, transparent 66%);
+      }
+      .hero-copy {
+        padding: 3rem 0 2.25rem;
+      }
+      .hero-copy .lede { max-width: 28rem; }
+      .wrap { padding-top: 2.5rem; }
+      main { padding-top: 0.75rem; }
+    }
+
+    /* Photo gallery: full wrap width, sits inside main */
+    section.photos {
+      width: min(var(--wrap), calc(100vw - 2rem));
+      max-width: min(var(--wrap), calc(100vw - 2rem));
+      box-sizing: border-box;
+      padding-bottom: 2.25rem;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.35rem 1.15rem;
+      margin: 1.35rem 0 0;
+      align-items: start;
+    }
+    @media (min-width: 700px) {
+      .gallery {
+        grid-template-columns: 1fr 1fr;
+        gap: 1.6rem 1.35rem;
+      }
+    }
+    .gallery figure {
+      margin: 0;
+    }
+    .gallery figure img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 2px;
+      background: #e4ddd0;
+    }
+    .gallery figcaption {
+      margin: 0.55rem 0 0;
+      font-family: ui-sans-serif, system-ui, sans-serif;
+      font-size: 0.88rem;
+      line-height: 1.45;
+      color: var(--muted);
+    }
+    .photos .note {
+      margin: 1.5rem 0 0;
+      max-width: var(--measure);
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#content">Skip to content</a>
+  <header class="hero">
+    <div class="hero-media">
+      <picture>
+        <source type="image/webp" srcset="photo-hero.webp">
+        <img
+          src="photo-hero.jpg"
+          width="1280"
+          height="720"
+          alt="Ian Slade speaking on the TEDxPacific Avenue stage"
+          fetchpriority="high"
+          decoding="async">
+      </picture>
+    </div>
+    <div class="hero-scrim" aria-hidden="true"></div>
+    <div class="hero-copy">
+      <div>
+        <h1>Ian Slade</h1>
+        <p class="lede">A clinician turned healthcare technologist, putting technology in caring hands for the <span class="nw">well-being</span> of all.</p>
+      </div>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <div class="video-ph" role="region" aria-label="Introductory video, coming soon">
+      <div>
+        <div class="play" aria-hidden="true"><span></span></div>
+        <p>A short introduction</p>
+        <p class="hint">Video to come, about 45 seconds</p>
+      </div>
+    </div>
+
+    <main id="content">
+      <section class="story" aria-labelledby="story-title">
+        <img class="portrait" src="photo-portrait.jpg" width="480" height="480" alt="Portrait of Ian Slade">
+        <div>
+          <h2 id="story-title">About</h2>
+          <p>My journey began as a clinician at the bedside, where I learned that the latest technology works best in caring hands. For more than twenty years I’ve worked to put it there, using technology to bring a better quality of life within reach for everyone. That work has taken many forms: technology consultant, global speaker, author, public policy advocate. The driver has always been the same: technology for the <span class="nw">well-being</span> of humanity. Storytelling is my favorite way to share what I’ve learned along the way, from the TEDx stage to my books to my seat on the board of the Hollywood Film Festival.</p>
+          <blockquote>
+            <p>“Technology must serve human dignity.”</p>
+            <footer>Ian Slade</footer>
+          </blockquote>
+        </div>
+      </section>
+
+      <section aria-labelledby="books-title">
+        <h2>Books</h2>
+        <h3 id="books-title">Ancient wisdom, modern leaders, safer technology</h3>
+        <figure class="photo">
+          <img src="photo-book-signing.jpg" width="960" height="771" alt="Ian Slade signing copies of Flow Like Water">
+        </figure>
+        <p>I’m the author of <cite>Flow Like Water: Ancient Wisdom for the Modern Leader</cite>, which brings Taoist philosophy to leadership and reached #8 in Kindle’s Business Ethics category. My next book, <cite>Technology at the Speed of Safety</cite>, written with former Lt. Governor Kathleen Kennedy Townsend, is forthcoming.</p>
+        <p class="cta"><a href="https://www.amazon.com/dp/B0FKLYJN2H">Get Flow Like Water on Amazon</a></p>
+      </section>
+
+      <section aria-labelledby="hannah-title">
+        <h2>TEDx and Hannah</h2>
+        <h3 id="hannah-title">An AI on stage, making the human case</h3>
+        <p>At TEDxPacific Avenue on June 8, 2025, I gave <cite>How AI Can Make Us More Human</cite> with Hannah, the AI companion I created, as my co-speaker. She was the first AI co-speaker on a TEDx stage. She has also supported rehab patients in California.</p>
+        <p class="cta"><a href="https://youtu.be/FulFa0WSDWU">Watch the talk</a><a href="https://tinyurl.com/ask-hannah">Meet Ask Hannah</a></p>
+      </section>
+
+      <section aria-labelledby="policy-title">
+        <h2>Policy and AI ethics</h2>
+        <h3 id="policy-title">Useful and safe</h3>
+        <p>I’ve helped shape health technology policy across three U.S. administrations: the HITECH Act under President Obama, the 21st Century Cures Act interoperability and information-blocking rules under President Trump, as chair of the HIMSS Advocacy Task Force, and the Partnership for Digital Access in Africa under the Biden administration. In California, as HIMSS SoCal’s VP of Advocacy, I helped brief legislators on AB 1979 and SB 503, two health AI bills signed into law in 2026. The common goal is technology that is useful and safe.</p>
+        <p>HIMSS named me its 2022 Global Advocate of the Year, and our Southern California chapter received the HIMSS National Advocacy and Public Policy Changemaker Award in 2025 and 2026. Today I carry that work into AI ethics, on the Vatican’s Rome Call for AI Ethics with Kathleen Kennedy Townsend and Father Paolo Benanti, the Pope’s AI advisor. I also teach at UCLA and speak on human-centered AI, from the TEDx stage to the Balboa Island Museum in Newport Beach.</p>
+        <p class="cta"><a href="https://www.romecall.org/the-call/">About the Rome Call</a></p>
+      </section>
+
+      <section class="photos" id="photos" aria-labelledby="photos-title">
+        <h2 id="photos-title">Photos</h2>
+        <h3>Along the way</h3>
+        <div class="gallery">
+        <figure>
+          <picture>
+            <source type="image/webp" srcset="img/gallery/finland-2021.webp">
+            <img src="img/gallery/finland-2021.jpg" width="1200" height="900" alt="Ian Slade with Consul General Stefan Lindström in front of a Consulate General of Finland Los Angeles backdrop." loading="eager" decoding="async">
+          </picture>
+          <figcaption>Honored as a Friend of Finland for supporting Finnish commerce in Los Angeles, with Consul General Stefan Lindström, 2021.</figcaption>
+        </figure>
+        <figure>
+          <picture>
+            <source type="image/webp" srcset="img/gallery/sweden-2025.webp">
+            <img src="img/gallery/sweden-2025.jpg" width="900" height="1200" alt="Ian Slade holding a framed certificate with Kathleen Kennedy Townsend and colleagues from the Swedish-American Chamber of Commerce LA at the Beverly Hilton." loading="lazy" decoding="async">
+          </picture>
+          <figcaption>Friends of Sweden recognition, Swedish-American Chamber of Commerce LA, with Kathleen Kennedy Townsend, Beverly Hilton, 2025.</figcaption>
+        </figure>
+        <figure>
+          <picture>
+            <source type="image/webp" srcset="img/gallery/chamber-firechat-2025.webp">
+            <img src="img/gallery/chamber-firechat-2025.jpg" width="1200" height="900" alt="Ian Slade and Kathleen Kennedy Townsend on stage at an AI fireside chat hosted by the Swedish-American Chamber of Commerce LA." loading="lazy" decoding="async">
+          </picture>
+          <figcaption>AI fireside chat with Kathleen Kennedy Townsend, Swedish-American Chamber of Commerce LA, Beverly Hilton, 2025.</figcaption>
+        </figure>
+        <figure>
+          <picture>
+            <source type="image/webp" srcset="img/gallery/rfk-memoir.webp">
+            <img src="img/gallery/rfk-memoir.jpg" width="1200" height="900" alt="Ian Slade and Kathleen Kennedy Townsend holding a copy of Robert Kennedy: A Memoir." loading="lazy" decoding="async">
+          </picture>
+          <figcaption>With Kathleen Kennedy Townsend, holding Robert Kennedy: A Memoir.</figcaption>
+        </figure>
+        <figure>
+          <picture>
+            <source type="image/webp" srcset="img/gallery/cannes-festival-sign-2026.webp">
+            <img src="img/gallery/cannes-festival-sign-2026.jpg" width="1200" height="900" alt="Ian Slade standing by the Festival International du Film sign at the harbor in Cannes." loading="lazy" decoding="async">
+          </picture>
+          <figcaption>Cannes Film Festival, 2026.</figcaption>
+        </figure>
+        <figure>
+          <picture>
+            <source type="image/webp" srcset="img/gallery/cannes-booth-2026.webp">
+            <img src="img/gallery/cannes-booth-2026.jpg" width="1200" height="900" alt="Ian Slade with colleagues at a Cannes Film Festival booth." loading="lazy" decoding="async">
+          </picture>
+          <figcaption>Cannes Film Festival, 2026.</figcaption>
+        </figure>
+        <figure>
+          <picture>
+            <source type="image/webp" srcset="img/gallery/cannes-clapperboard-2026.webp">
+            <img src="img/gallery/cannes-clapperboard-2026.jpg" width="900" height="1200" alt="Ian Slade holding a film clapperboard at the Cannes Film Festival." loading="lazy" decoding="async">
+          </picture>
+          <figcaption>Cannes Film Festival, 2026.</figcaption>
+        </figure>
+        <figure>
+          <picture>
+            <source type="image/webp" srcset="img/gallery/cannes-beach-2026.webp">
+            <img src="img/gallery/cannes-beach-2026.jpg" width="1200" height="900" alt="Ian Slade on the beach in Cannes during the film festival." loading="lazy" decoding="async">
+          </picture>
+          <figcaption>Cannes Film Festival, 2026.</figcaption>
+        </figure>
+        <figure>
+          <picture>
+            <source type="image/webp" srcset="img/gallery/chop-tower-site-2026.webp">
+            <img src="img/gallery/chop-tower-site-2026.jpg" width="1200" height="900" alt="Ian Slade in a hard hat on a construction site for the new Children’s Hospital of Philadelphia tower." loading="lazy" decoding="async">
+          </picture>
+          <figcaption>Technology governance for Children’s Hospital of Philadelphia’s new tower, through Nordic Consulting Partners, 2026.</figcaption>
+        </figure>
+        <figure>
+          <picture>
+            <source type="image/webp" srcset="img/gallery/chop-podium-2026.webp">
+            <img src="img/gallery/chop-podium-2026.jpg" width="880" height="1200" alt="Ian Slade speaking at a podium with the Children’s Hospital of Philadelphia logo." loading="lazy" decoding="async">
+          </picture>
+          <figcaption>At Children’s Hospital of Philadelphia, 2026. Technology governance for the new tower, through Nordic Consulting Partners.</figcaption>
+        </figure>
+        <figure>
+          <picture>
+            <source type="image/webp" srcset="img/gallery/keith-lamar-red-carpet-2025.webp">
+            <img src="img/gallery/keith-lamar-red-carpet-2025.jpg" width="900" height="1200" alt="Ian Slade and Bruce Bryan on the Golden State Film Festival red carpet at TCL Chinese Theatre for Justice for Keith LaMar." loading="lazy" decoding="async">
+          </picture>
+          <figcaption>Justice for Keith LaMar at the Golden State Film Festival red carpet, TCL Chinese Theatre, with Bruce Bryan, 2025.</figcaption>
+        </figure>
+        <figure>
+          <picture>
+            <source type="image/webp" srcset="img/gallery/keith-lamar-grand-prize-2025.webp">
+            <img src="img/gallery/keith-lamar-grand-prize-2025.jpg" width="1200" height="1200" alt="Graphic announcing Justice for Keith LaMar as Grand Prize winner for Best Animated Short at the Golden State Film Festival 2025." loading="lazy" decoding="async">
+          </picture>
+          <figcaption>Grand Prize, Best Animated Short, Golden State Film Festival, 2025.</figcaption>
+        </figure>
+        <figure>
+          <picture>
+            <source type="image/webp" srcset="img/gallery/homeboy-fr-greg-2025.webp">
+            <img src="img/gallery/homeboy-fr-greg-2025.jpg" width="1200" height="900" alt="Ian Slade with Fr. Greg Boyle, founder of Homeboy Industries, and Bruce Bryan." loading="lazy" decoding="async">
+          </picture>
+          <figcaption>With Fr. Greg Boyle, founder of Homeboy Industries, and Bruce Bryan, 2025.</figcaption>
+        </figure>
+        <figure>
+          <picture>
+            <source type="image/webp" srcset="img/gallery/podcast-interview.webp">
+            <img src="img/gallery/podcast-interview.jpg" width="1200" height="900" alt="Ian Slade being interviewed in a podcast studio." loading="lazy" decoding="async">
+          </picture>
+          <figcaption>Podcast interview.</figcaption>
+        </figure>
+        <figure>
+          <picture>
+            <source type="image/webp" srcset="img/gallery/tedx-pacific-avenue-2025.webp">
+            <img src="img/gallery/tedx-pacific-avenue-2025.jpg" width="1200" height="900" alt="Ian Slade in front of the TEDxPacific Avenue backdrop." loading="lazy" decoding="async">
+          </picture>
+          <figcaption>At TEDxPacific Avenue, 2025.</figcaption>
+        </figure>
+        <figure>
+          <picture>
+            <source type="image/webp" srcset="img/gallery/altamed-book-session.webp">
+            <img src="img/gallery/altamed-book-session.jpg" width="756" height="1200" alt="Ian Slade at a table during a Flow Like Water session for AltaMed leaders." loading="lazy" decoding="async">
+          </picture>
+          <figcaption>A Flow Like Water session for AltaMed leaders, October 28, 2025.</figcaption>
+        </figure>
+        <figure>
+          <picture>
+            <source type="image/webp" srcset="img/gallery/altamed-book-group.webp">
+            <img src="img/gallery/altamed-book-group.jpg" width="1200" height="900" alt="Ian Slade with AltaMed leaders holding copies of Flow Like Water." loading="lazy" decoding="async">
+          </picture>
+          <figcaption>With AltaMed leaders after a Flow Like Water session, October 28, 2025.</figcaption>
+        </figure>
+        <figure>
+          <picture>
+            <source type="image/webp" srcset="img/gallery/world-culture-film-festival.webp">
+            <img src="img/gallery/world-culture-film-festival.jpg" width="900" height="1200" alt="Ian Slade at the official photo booth of the World Culture Film Festival." loading="lazy" decoding="async">
+          </picture>
+          <figcaption>At the World Culture Film Festival photo booth, 2025.</figcaption>
+        </figure>
+        </div>
+        <p class="note">I also sponsored Thanksgiving meals for an orphanage in India.</p>
+      </section>
+
+      <section class="contact" aria-labelledby="contact-title">
+        <h2>Contact</h2>
+        <h3 id="contact-title">Get in touch</h3>
+        <p>To reach me, write to <a class="mail" href="mailto:ian@itconsultingroup.com">ian@itconsultingroup.com</a>.</p>
+      </section>
+    </main>
+
+    <footer>
+      <span>Ian Slade</span>
+      <a href="https://www.linkedin.com/in/ianslade1">LinkedIn</a>
+    </footer>
+  </div>
+</body>
+</html>

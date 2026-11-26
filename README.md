@@ -1,1 +1,1 @@
-# ianslade.com
+This is Ian Slade's personal site: a plain static site with no build step, served by GitHub Pages from the root of the main branch at the custom domain ianslade.com. DNS for that domain is managed at Porkbun.
